@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Community | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/community.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+</head>
+
+<body>
+
+{% include 'components/dashboard_sidebar.html' %}
+
+<div class="main-content">
+
+    <div class="community-header">
+
+        <h1>
+            Discover People
+        </h1>
+
+        <p>
+            Learn, Teach and Grow Together
+        </p>
+
+    </div>
+
+    <div class="top-section">
+
+        <div class="stat-card">
+
+            <i class="fas fa-users"></i>
+
+            <h2>{{ users|length }}</h2>
+
+            <span>Community Members</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-graduation-cap"></i>
+
+            <h2>100+</h2>
+
+            <span>Skills Available</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-handshake"></i>
+
+            <h2>∞</h2>
+
+            <span>Learning Opportunities</span>
+
+        </div>
+
+    </div>
+
+    <div class="search-container">
+
+        <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by name, skill, language...">
+
+    </div>
+
+    <h2 class="section-title">
+        Suggested Skill Matches
+    </h2>
+
+    <div class="users-grid" id="usersGrid">
+
+        {% for user in users %}
+
+        <div class="user-card">
+
+            {% if user['profile_pic'] %}
+
+            <img
+            src="{{ user['profile_pic'] }}"
+            class="user-avatar">
+
+            {% else %}
+
+            <div class="avatar-placeholder">
+
+                {{ user['name'][0]|upper }}
+
+            </div>
+
+            {% endif %}
+
+            <h3>{{ user['name'] }}</h3>
+
+            <p class="bio">
+
+                {{ user['bio'] or 'No bio available.' }}
+
+            </p>
+
+            <div class="skill-block">
+
+                <h4>Skills I Teach</h4>
+
+                <div class="tags">
+
+                    {% for skill in user['teach_skills'].split(',') if skill %}
+
+                    <span class="tag">
+
+                        {{ skill }}
+
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="skill-block">
+
+                <h4>Skills I Learn</h4>
+
+                <div class="tags">
+
+                    {% for skill in user['learn_skills'].split(',') if skill %}
+
+                    <span class="tag learn">
+
+                        {{ skill }}
+
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="card-actions">
+
+                <button
+class="profile-btn"
+onclick="openProfile(this)"
+
+data-name="{{ user['name'] }}"
+data-bio="{{ user['bio'] }}"
+data-teach="{{ user['teach_skills'] }}"
+data-learn="{{ user['learn_skills'] }}"
+data-languages="{{ user['languages'] }}"
+data-pic="{{ user['profile_pic'] }}">
+
+    View Profile
+
+</button>
+
+                <a
+                href="/send-request/{{ user['id'] }}"
+                class="connect-btn">
+
+                    Connect
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script>
+
+const searchInput =
+document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function(){
+
+    let filter =
+    this.value.toLowerCase();
+
+    let cards =
+    document.querySelectorAll(".user-card");
+
+    cards.forEach(card=>{
+
+        let text =
+        card.innerText.toLowerCase();
+
+        card.style.display =
+        text.includes(filter)
+        ? "block"
+        : "none";
+
+    });
+
+});
+
+</script>
+<div id="profileModal" class="profile-modal">
+
+    <div class="profile-content">
+
+        <span
+        class="close-modal"
+        onclick="closeProfile()">
+
+            &times;
+
+        </span>
+
+        <div class="profile-header">
+
+            <img
+            id="modalPic"
+            class="modal-avatar">
+
+            <h2 id="modalName"></h2>
+
+        </div>
+
+        <div class="profile-section">
+
+            <h3>About</h3>
+
+            <p id="modalBio"></p>
+
+        </div>
+
+        <div class="profile-section">
+
+            <h3>Skills I Teach</h3>
+
+            <p id="modalTeach"></p>
+
+        </div>
+
+        <div class="profile-section">
+
+            <h3>Skills I Learn</h3>
+
+            <p id="modalLearn"></p>
+
+        </div>
+
+        <div class="profile-section">
+
+            <h3>Languages</h3>
+
+            <p id="modalLanguages"></p>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+function openProfile(btn){
+
+    document.getElementById(
+        "profileModal"
+    ).style.display = "block";
+
+    document.getElementById(
+        "modalName"
+    ).innerText =
+    btn.dataset.name;
+
+    document.getElementById(
+        "modalBio"
+    ).innerText =
+    btn.dataset.bio || "No bio added";
+
+    document.getElementById(
+        "modalTeach"
+    ).innerText =
+    btn.dataset.teach || "No skills";
+
+    document.getElementById(
+        "modalLearn"
+    ).innerText =
+    btn.dataset.learn || "No skills";
+
+    document.getElementById(
+        "modalLanguages"
+    ).innerText =
+    btn.dataset.languages || "Not specified";
+
+    let pic =
+    btn.dataset.pic;
+
+    document.getElementById(
+        "modalPic"
+    ).src =
+    pic || "/static/images/default-user.png";
+}
+
+function closeProfile(){
+
+    document.getElementById(
+        "profileModal"
+    ).style.display = "none";
+}
+
+window.onclick = function(event){
+
+    let modal =
+    document.getElementById(
+        "profileModal"
+    );
+
+    if(event.target == modal){
+
+        modal.style.display = "none";
+    }
+}
+
+</script>
+</body>
+</html>

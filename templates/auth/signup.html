@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/signup.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="signup-container">
+
+    <!-- LEFT -->
+
+    <div class="signup-left">
+
+        <div class="logo">
+            ✦ SkillSwap
+        </div>
+
+        <h1>
+            Join SkillSwap Today 🚀
+        </h1>
+
+        <p>
+            Start teaching. Start learning.
+            Build meaningful connections and
+            grow your skills with students around the world.
+        </p>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h2>1000+</h2>
+                <span>Students</span>
+            </div>
+
+            <div class="stat-card">
+                <h2>500+</h2>
+                <span>Skills</span>
+            </div>
+
+            <div class="stat-card">
+                <h2>300+</h2>
+                <span>Connections</span>
+            </div>
+
+        </div>
+
+        <div class="skill-tags">
+
+            <span>Python</span>
+            <span>AI</span>
+            <span>Web Development</span>
+            <span>Photography</span>
+            <span>Video Editing</span>
+            <span>Design</span>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="signup-right">
+
+        <div class="signup-card">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Begin your SkillSwap journey today
+            </p>
+
+            <form method="POST">
+
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                </div>
+
+                <p class="subtitle">
+Create your account and start your learning journey.
+</p>
+                <button
+                type="submit"
+                class="signup-btn">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+            <div class="divider">
+                OR
+            </div>
+
+            <a href="/google-login"
+class="google-btn">
+
+                <i class="fab fa-google"></i>
+
+                Continue with Google
+
+            </a>
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+
+</body>
+</html>

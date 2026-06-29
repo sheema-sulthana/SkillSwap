@@ -1,0 +1,111 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#020617;
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:50px 20px;
+}
+
+.profile-container{
+width:100%;
+max-width:950px;
+background:#0f172a;
+padding:40px;
+border-radius:25px;
+border:1px solid rgba(56,189,248,.15);
+box-shadow:0 0 40px rgba(37,99,235,.15);
+}
+
+h1{
+text-align:center;
+font-size:48px;
+margin-bottom:35px;
+font-weight:800;
+}
+
+input[type="text"],
+textarea{
+width:100%;
+background:#020617;
+border:1px solid #1e293b;
+border-radius:14px;
+padding:18px;
+color:white;
+font-size:16px;
+margin-bottom:20px;
+}
+
+textarea{
+height:140px;
+resize:none;
+}
+
+.card{
+background:#111c33;
+padding:25px;
+border-radius:20px;
+margin-bottom:22px;
+}
+
+.card h2{
+margin-bottom:18px;
+font-size:30px;
+font-weight:700;
+}
+
+.checkbox-grid{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+}
+
+.checkbox-grid label{
+background:#1e293b;
+padding:12px 18px;
+border-radius:12px;
+cursor:pointer;
+font-size:15px;
+transition:.3s;
+border:1px solid transparent;
+}
+
+.checkbox-grid label:hover{
+transform:translateY(-3px);
+border-color:#38bdf8;
+background:#2563eb;
+}
+
+.checkbox-grid input{
+margin-right:8px;
+}
+
+.save-btn{
+width:100%;
+padding:18px;
+border:none;
+border-radius:14px;
+background:linear-gradient(
+90deg,
+#2563eb,
+#38bdf8
+);
+color:white;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.save-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 30px rgba(56,189,248,.3);
+}

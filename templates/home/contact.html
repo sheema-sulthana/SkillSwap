@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/contact.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include 'components/navbar.html' %}
+
+<section class="contact-hero">
+
+    <h1>Contact Us</h1>
+
+    <p>
+        Have questions, suggestions or feedback?
+        We'd love to hear from you.
+    </p>
+
+</section>
+
+<section class="contact-section">
+
+    <div class="contact-container">
+
+        <!-- CONTACT FORM -->
+
+        <div class="contact-card">
+
+            <div class="icon-circle">
+                <i class="fa-regular fa-envelope"></i>
+            </div>
+
+            <h2>Send Us a Message</h2>
+
+            <p class="subtitle">
+                Fill out the form below and we'll get back to you soon.
+            </p>
+
+            {% if success %}
+            <div class="success-message">
+                ✅ Message sent successfully!
+            </div>
+            {% endif %}
+
+            <form method="POST" action="/contact">
+
+                <label>Your Name</label>
+
+                <input
+                type="text"
+                name="name"
+                required
+                placeholder="Enter your name">
+
+                <label>Your Email</label>
+
+                <input
+                type="email"
+                name="email"
+                required
+                placeholder="Enter your email">
+
+                <label>Message</label>
+
+                <textarea
+                name="message"
+                required
+                placeholder="Write your message..."></textarea>
+
+                <button type="submit">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- CONTACT INFO -->
+
+        <div class="info-card">
+
+            <h2>Get In Touch</h2>
+
+            <p>
+                Need support, have questions, or want to provide feedback?
+                We're here to help.
+            </p>
+
+            <div class="info-item">
+
+                <i class="fas fa-envelope"></i>
+
+                <div>
+                    <h4>Support Email</h4>
+                    <span>support@skillswap.com</span>
+                </div>
+
+            </div>
+
+            <div class="info-item">
+
+                <i class="fas fa-phone"></i>
+
+                <div>
+                    <h4>Phone Number</h4>
+                    <span>+91 98765 43210</span>
+                </div>
+
+            </div>
+
+            <div class="info-item">
+
+                <i class="fas fa-location-dot"></i>
+
+                <div>
+                    <h4>Office Address</h4>
+                    <span>
+                        SkillSwap Learning Hub<br>
+                        Vijayawada, Andhra Pradesh<br>
+                        India
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="info-item">
+
+                <i class="fas fa-headset"></i>
+
+                <div>
+                    <h4>Emergency Hotline</h4>
+                    <span>1800-123-4567</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="faq-section">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<button class="faq-question">
+
+<span>Is SkillSwap completely free?</span>
+
+<i class="fas fa-chevron-down"></i>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+Yes, SkillSwap is 100% free. No hidden costs,
+no subscriptions. Just connect, learn and teach.
+</p>
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+
+<span>How do I connect with someone?</span>
+
+<i class="fas fa-chevron-down"></i>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+Browse students by skills, send a connection request,
+and once accepted you can start chatting and exchanging skills.
+</p>
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+
+<span>Can I both teach and learn?</span>
+
+<i class="fas fa-chevron-down"></i>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+Absolutely! You can offer skills you're confident in
+and learn skills you're interested in simultaneously.
+</p>
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+
+<span>Do I need to be an expert to teach?</span>
+
+<i class="fas fa-chevron-down"></i>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+No. As long as you have a good understanding of a skill,
+you're welcome to teach others who are just starting.
+</p>
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question">
+
+<span>Is there any limit to how many skills I can add?</span>
+
+<i class="fas fa-chevron-down"></i>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+No, you can add as many skills as you want —
+both learning and teaching skills.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const faqButtons =
+document.querySelectorAll(".faq-question");
+
+faqButtons.forEach(button => {
+
+button.addEventListener("click", () => {
+
+const answer =
+button.nextElementSibling;
+
+button.classList.toggle("active");
+
+if(answer.style.maxHeight){
+
+answer.style.maxHeight = null;
+
+}else{
+
+answer.style.maxHeight =
+answer.scrollHeight + "px";
+
+}
+
+});
+
+});
+
+</script>
+</body>
+</html>

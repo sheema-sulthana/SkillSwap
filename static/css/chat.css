@@ -1,0 +1,330 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#020d33;
+    font-family:'Poppins',sans-serif;
+    color:white;
+}
+
+/* =========================
+   MATCH DASHBOARD LAYOUT
+========================= */
+.main-content{
+
+    margin-left:280px;
+
+    padding:40px;
+
+    min-height:100vh;
+}
+
+/* =========================
+   CHAT LAYOUT
+========================= */
+
+.chat-container{
+
+    display:flex;
+
+    gap:30px;
+
+    width:100%;
+
+    height:calc(100vh - 80px);
+
+    padding-left:15px;
+}
+
+/* =========================
+   CONNECTION SIDEBAR
+========================= */
+.chat-sidebar{
+
+    width:320px;
+
+    min-width:320px;
+
+    background:#091633;
+
+    border:1px solid rgba(56,189,248,.12);
+
+    border-radius:22px;
+
+    overflow:hidden;
+}
+
+.chat-sidebar-header{
+
+    padding:25px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.chat-sidebar-header h2{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:white;
+}
+
+/* =========================
+   CONNECTIONS LIST
+========================= */
+
+.connections-list{
+
+    height:100%;
+
+    overflow-y:auto;
+}
+
+.connection-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px 20px;
+
+    text-decoration:none;
+
+    color:white;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
+    transition:.3s ease;
+}
+
+.connection-item:hover{
+
+    background:
+    rgba(56,189,248,.08);
+}
+
+.connection-item.active{
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(37,99,235,.35),
+        rgba(56,189,248,.15)
+    );
+
+    border-left:4px solid #38bdf8;
+}
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.connection-avatar{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #38bdf8;
+
+    flex-shrink:0;
+}
+
+.avatar-placeholder{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:22px;
+
+    flex-shrink:0;
+}
+
+/* =========================
+   USER INFO
+========================= */
+
+.connection-info{
+
+    overflow:hidden;
+}
+
+.connection-info h4{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:white;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.connection-info p{
+
+    font-size:12px;
+
+    color:#9db3ff;
+
+    margin-top:3px;
+}
+
+/* =========================
+   MAIN CHAT PANEL
+========================= */
+
+.chat-main{
+
+    flex:1;
+
+    background:#091633;
+
+    border:1px solid rgba(56,189,248,.12);
+
+    border-radius:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:40px;
+}
+
+/* =========================
+   WELCOME AREA
+========================= */
+
+.chat-welcome{
+
+    max-width:500px;
+}
+
+.chat-welcome i{
+
+    font-size:80px;
+
+    color:#38bdf8;
+
+    margin-bottom:20px;
+}
+
+.chat-welcome h2{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+    color:white;
+}
+
+.chat-welcome p{
+
+    color:#9db3ff;
+
+    font-size:16px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .main-content{
+
+        margin-left:0;
+
+        padding:20px;
+    }
+
+    .chat-container{
+
+        flex-direction:column;
+
+        height:auto;
+    }
+
+    .chat-sidebar{
+    width:300px;
+    min-width:300px;
+}
+    .chat-main{
+
+        min-height:500px;
+    }
+}
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}

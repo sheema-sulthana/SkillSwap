@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# VS Code
+.vscode/
+
+# Uploaded files
+uploads/*
+!uploads/.gitkeep
+
+# SQLite WAL files
+*.db-shm
+*.db-wal

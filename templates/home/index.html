@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillSwap | Learn, Teach & Grow</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/home.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    {% include 'components/navbar.html' %}
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Learn Skills.<br>
+                Teach Skills.<br>
+                Grow Together.
+            </h1>
+
+            <p>
+
+                Connect with students who can teach what you want to learn.
+                Exchange knowledge, build meaningful connections and
+                develop valuable skills completely free.
+
+            </p>
+
+            <div class="hero-buttons">
+
+    <a href="/login" class="primary-btn">
+        Get Started
+    </a>
+</div>
+
+        </div>
+
+    </section>
+
+    <!-- HOW IT WORKS -->
+
+    <section class="section">
+
+        <h2>How It Works</h2>
+
+        <div class="card-grid">
+
+            <div class="card">
+
+                <i class="fas fa-user-plus"></i>
+
+                <h3>Create Profile</h3>
+
+                <p>
+                    Create your student profile and showcase the skills
+                    you can teach and the skills you want to learn.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-book"></i>
+
+                <h3>Add Skills</h3>
+
+                <p>
+                    Add skills such as Python, Graphic Design,
+                    AI, Video Editing, Photography and more.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-search"></i>
+
+                <h3>Find Matches</h3>
+
+                <p>
+                    Discover students whose learning interests
+                    perfectly match your teaching skills.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-paper-plane"></i>
+
+                <h3>Send Request</h3>
+
+                <p>
+                    Send a connection request and start your
+                    skill exchange journey instantly.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-users"></i>
+
+                <h3>Learn Together</h3>
+
+                <p>
+                    Share knowledge, collaborate with students
+                    and grow together without spending money.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- POPULAR SKILLS -->
+
+    <section class="section">
+
+        <h2>Popular Skills</h2>
+
+        <div class="skills-grid">
+
+            <div class="skill-card">🐍 Python</div>
+
+            <div class="skill-card">
+                🧠 Machine Learning
+            </div>
+
+            <div class="skill-card">
+                🤖 Artificial Intelligence
+            </div>
+
+            <div class="skill-card">
+                ⚡ Flask
+            </div>
+
+            <div class="skill-card">
+                🎬 Video Editing
+            </div>
+
+            <div class="skill-card">
+                📷 Photography
+            </div>
+
+            <div class="skill-card">
+                🗣️ Public Speaking
+            </div>
+
+            <div class="skill-card">
+                ♟ Chess
+            </div>
+
+            <div class="skill-card">
+                📱 Mobile App Development
+            </div>
+
+            <div class="skill-card">
+                📈 Digital Marketing
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- WHY SKILLSWAP -->
+
+    <section class="section">
+
+        <h2>Why SkillSwap?</h2>
+
+        <div class="card-grid">
+
+            <div class="card">
+
+                <h3>Learn For Free</h3>
+
+                <p>
+                    Gain valuable skills without spending money.
+                    SkillSwap encourages free learning through
+                    mutual knowledge exchange.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Teach Others</h3>
+
+                <p>
+                    Share your expertise and help fellow students
+                    while strengthening your own understanding.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Build Network</h3>
+
+                <p>
+                    Connect with students who share similar interests
+                    and create long-lasting professional relationships.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Grow Together</h3>
+
+                <p>
+                    Foster a collaborative environment where
+                    everyone learns, teaches and succeeds together.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Career Growth</h3>
+
+                <p>
+                    Learn practical skills that enhance your resume,
+                    portfolio and future career opportunities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div>
+
+            <h2>1000+</h2>
+
+            <p>Students</p>
+
+        </div>
+
+        <div>
+
+            <h2>500+</h2>
+
+            <p>Skills</p>
+
+        </div>
+
+        <div>
+
+            <h2>300+</h2>
+
+            <p>Connections</p>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>SkillSwap</h3>
+
+        <p>
+            Learn. Teach. Grow.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

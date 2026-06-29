@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About SkillSwap</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/about.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+{% include 'components/navbar.html' %}
+
+<!-- HERO -->
+
+<section class="about-hero">
+
+    <h1>About SkillSwap</h1>
+
+    <p>
+        SkillSwap is a student-driven learning platform where learners teach,
+        learn and grow together through skill exchange. Our mission is to make
+        learning accessible, collaborative and completely free.
+    </p>
+
+    <div class="hero-image">
+
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400"
+            alt="Students Learning">
+
+    </div>
+
+</section>
+
+<!-- MISSION -->
+
+<section class="mission-section">
+
+    <h2>Our Mission</h2>
+
+    <p class="mission-text">
+
+        To create a community where students can exchange knowledge,
+        build confidence, develop communication skills and learn
+        without financial barriers.
+
+    </p>
+
+    <div class="mission-grid">
+
+        <div class="mission-card">
+
+            <i class="fas fa-users"></i>
+
+            <h3>Peer-to-Peer Learning</h3>
+
+            <p>
+
+                Students learn best when they collaborate and share
+                knowledge with fellow learners.
+
+            </p>
+
+        </div>
+
+        <div class="mission-card">
+
+            <i class="fas fa-star"></i>
+
+            <h3>Knowledge Sharing</h3>
+
+            <p>
+
+                Every student has something valuable to teach.
+                SkillSwap helps them share it.
+
+            </p>
+
+        </div>
+
+        <div class="mission-card">
+
+            <i class="fas fa-award"></i>
+
+            <h3>Building Confidence</h3>
+
+            <p>
+
+                Teaching others strengthens communication,
+                leadership and self-confidence.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BANNER -->
+
+<section class="barrier-section">
+
+    <div class="barrier-card">
+
+        <i class="fas fa-globe"></i>
+
+        <h2>Breaking Barriers, Building Bridges</h2>
+
+        <p>
+
+            SkillSwap removes financial barriers from learning by allowing
+            students to exchange skills instead of paying for expensive
+            courses. Whether it's coding, design, photography,
+            communication or AI, everyone gets an opportunity to learn.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- VALUES -->
+
+<section class="values-section">
+
+    <h2>Our Values</h2>
+
+    <p class="value-subtitle">
+
+        The principles that guide everything we do
+
+    </p>
+
+    <div class="values-grid">
+
+        <div class="value-card">
+
+            <i class="far fa-heart"></i>
+
+            <h3>Community First</h3>
+
+            <p>
+
+                Building meaningful connections that encourage
+                collaboration and mutual growth.
+
+            </p>
+
+        </div>
+
+        <div class="value-card">
+
+            <i class="fas fa-book-open"></i>
+
+            <h3>Knowledge Sharing</h3>
+
+            <p>
+
+                Everyone has valuable experiences and skills
+                worth sharing with others.
+
+            </p>
+
+        </div>
+
+        <div class="value-card">
+
+            <i class="fas fa-medal"></i>
+
+            <h3>Accessibility</h3>
+
+            <p>
+
+                Learning opportunities should be available to all
+                students regardless of background.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+    <h2>Ready to Start Your Skill Journey?</h2>
+
+    <p>
+
+        Join SkillSwap today and connect with students who can help
+        you learn new skills while sharing your own expertise.
+
+    </p>
+
+    <div class="cta-buttons">
+
+        <a href="/signup" class="primary-btn">
+            Get Started
+        </a>
+
+    </div>
+
+</section>
+
+</body>
+</html>

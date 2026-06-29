@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+</head>
+
+<body>
+
+{% include 'components/dashboard_sidebar.html' %}
+
+<div class="main-content">
+    <button id="menu-toggle">
+
+<i class="fas fa-bars"></i>
+
+</button>
+    <div class="welcome-header">
+
+    <div>
+    
+        <h1>
+            Welcome Back, {{ user['name'] }} 👋
+        </h1>
+
+        <p>
+            Learn • Teach • Grow Together
+        </p>
+
+    </div>
+
+    <div class="notification-wrapper">
+
+        <button
+class="notification-btn"
+onclick="toggleNotifications()">
+
+            <i class="fas fa-bell"></i>
+
+            {% if notifications_count > 0 %}
+            <span class="notification-badge">
+                {{ notifications_count }}
+            </span>
+            {% endif %}
+
+        </button>
+
+        <div
+id="notificationDropdown"
+class="notification-dropdown">
+
+            {% if notifications %}
+
+                {% for notification in notifications %}
+
+<div class="notification-item">
+
+{% if notification['type']=="connection_request" %}
+
+<p>
+
+<strong>{{ notification['name'] }}</strong>
+
+sent you a connection request.
+
+</p>
+
+<div class="notification-actions">
+
+<a href="/accept-request/{{notification['id']}}"
+class="accept-btn">
+
+Accept
+
+</a>
+
+<a href="/reject-request/{{notification['id']}}"
+class="reject-btn">
+
+Reject
+
+</a>
+
+</div>
+
+{% elif notification['type']=="session_created" %}
+
+<p>
+
+📅
+
+<strong>{{ notification['name'] }}</strong>
+
+created a new learning session.
+
+</p>
+
+{% elif notification['type']=="session_live" %}
+
+<p>
+
+🔴
+
+<strong>{{ notification['name'] }}</strong>
+
+started the session.
+
+Join now from the Sessions page.
+
+</p>
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+            {% else %}
+
+                <p class="empty-notification">
+                    No notifications
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <i class="fas fa-book"></i>
+            <h2>{{ skills_offered }}</h2>
+            <p>Skills Offered</p>
+        </div>
+
+        <div class="stat-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h2>{{ skills_learning }}</h2>
+            <p>Skills Learning</p>
+        </div>
+
+        <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <h2>{{ total_connections }}</h2>
+            <p>Connections</p>
+        </div>
+
+        <div class="stat-card">
+            <i class="fas fa-handshake"></i>
+            <h2>{{ total_matches }}</h2>
+            <p>Matches</p>
+        </div>
+
+    </div>
+
+    <!-- PROFILE + PROGRESS -->
+
+    <div class="dashboard-grid">
+
+        <div class="profile-card">
+
+            {% if user['profile_pic'] %}
+                <img src="{{ user['profile_pic'] }}"
+                     class="profile-image">
+            {% else %}
+                <div class="profile-avatar">
+                    {{ user['name'][0]|upper }}
+                </div>
+            {% endif %}
+
+            <div class="profile-details">
+
+                <h2 class="profile-name">
+                    {{ user['name'] }}
+                </h2>
+
+                <p class="profile-email">
+                    {{ user['email'] }}
+                </p>
+
+                <p class="profile-bio">
+                    {{ user['bio'] if user['bio'] else 'No bio added yet.' }}
+                </p>
+
+                <div class="language-tags">
+
+                    {% if user['languages'] %}
+
+                        {% for language in user['languages'].split(',') %}
+                            <span>{{ language }}</span>
+                        {% endfor %}
+
+                    {% else %}
+
+                        <span>English</span>
+
+                    {% endif %}
+
+                </div>
+
+                <a href="/edit-profile" class="edit-btn">
+                    Edit Profile
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="progress-card">
+
+            <h2>Learning Progress</h2>
+
+{% if learning_tracks %}
+
+{% for track in learning_tracks %}
+
+{% if track.total_sessions > 0 %}
+{% set progress =
+((track.completed_sessions /
+track.total_sessions) * 100)|int %}
+{% else %}
+{% set progress = 0 %}
+{% endif %}
+
+<div class="progress-item">
+
+    <div class="label-row">
+
+        <span>
+            {{ track.skill_name }}
+        </span>
+
+        <span>
+            {{ progress }}%
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"
+             style="width: { { progress } } %">
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No learning tracks yet.</p>
+
+{% endif %}
+
+        </div>
+
+    <!-- SKILLS -->
+
+    <div class="skills-wrapper">
+
+        <div class="skills-card">
+
+            <h2>Skills I Teach</h2>
+
+            <div class="tags">
+
+                {% if user['teach_skills'] %}
+
+                    {% for skill in user['teach_skills'].split(',') %}
+                        <span class="tag">{{ skill }}</span>
+                    {% endfor %}
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="skills-card">
+
+            <h2>Skills I Want To Learn</h2>
+
+            <div class="tags">
+
+                {% if user['learn_skills'] %}
+
+                    {% for skill in user['learn_skills'].split(',') %}
+                        <span class="tag">{{ skill }}</span>
+                    {% endfor %}
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ACHIEVEMENTS -->
+
+    <div class="achievement-card">
+
+        <h2>Achievements</h2>
+
+<div class="achievement-grid">
+
+    <div class="achievement-box">
+        🏆 Badges Earned:
+        {{ earned_badges }}
+    </div>
+
+    <div class="achievement-box">
+        📚 Learning Tracks:
+        {{ learning_tracks|length }}
+    </div>
+
+    <div class="achievement-box">
+        🤝 Connections:
+        {{ total_connections }}
+    </div>
+
+</div>
+</div>
+<script>
+
+function toggleNotifications() {
+
+    const dropdown =
+    document.getElementById(
+        "notificationDropdown"
+    );
+
+    if (
+        dropdown.style.display === "block"
+    ) {
+
+        dropdown.style.display = "none";
+
+    } else {
+
+        dropdown.style.display = "block";
+
+    }
+
+}
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const wrapper =
+        document.querySelector(
+            ".notification-wrapper"
+        );
+
+        const dropdown =
+        document.getElementById(
+            "notificationDropdown"
+        );
+
+        if (
+            !wrapper.contains(event.target)
+        ) {
+
+            dropdown.style.display = "none";
+
+        }
+
+    }
+);
+
+</script>
+<script>
+
+
+const menuBtn = document.getElementById("menu-btn");
+
+
+const sidebar = document.querySelector(".sidebar");
+
+
+
+menuBtn.onclick=function(){
+
+
+sidebar.classList.toggle("show");
+
+
+}
+
+
+
+</script>
+<script>
+
+const menuBtn = document.getElementById("menu-toggle");
+
+const sidebar = document.querySelector(".sidebar");
+
+menuBtn.addEventListener("click",()=>{
+
+sidebar.classList.toggle("show");
+
+});
+
+</script>
+</body>
+</html>

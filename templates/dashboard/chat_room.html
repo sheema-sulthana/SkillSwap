@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chat | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/chat_room.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+{% include 'components/dashboard_sidebar.html' %}
+
+<div class="main-content">
+
+    <div class="chat-wrapper">
+
+        <!-- CHAT HEADER -->
+
+        <div class="chat-header">
+
+            <div class="user-info">
+
+                {% if receiver['profile_pic'] %}
+
+                <img
+                src="{{ receiver['profile_pic'] }}"
+                class="chat-avatar">
+
+                {% else %}
+
+                <div class="avatar">
+                    {{ receiver['name'][0]|upper }}
+                </div>
+
+                {% endif %}
+
+                <div>
+
+                    <h3>{{ receiver['name'] }}</h3>
+
+                    <span class="online-status">
+                        🟢 Connected
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="chat-actions">
+
+                <div class="menu-container">
+
+    <button
+    class="action-btn"
+    onclick="toggleMenu()">
+
+        <i class="fas fa-ellipsis-v"></i>
+
+    </button>
+
+    <div
+    class="chat-menu"
+    id="chatMenu">
+
+        <a href="#"
+onclick="openProfilePanel()">
+            <i class="fas fa-user"></i>
+            View Profile
+        </a>
+
+        <a href="/delete-chat/{{ receiver['id'] }}">
+            <i class="fas fa-trash"></i>
+            Delete Chat
+        </a>
+
+    </div>
+
+</div>
+
+            </div>
+
+        </div>
+
+        <!-- MESSAGES -->
+
+        <div class="messages-area" id="messages">
+
+            {% if messages %}
+
+                {% for msg in messages %}
+
+                    {% if msg['sender_id'] == session['user_id'] %}
+
+                    <div class="message sent">
+
+                        <div class="message-content">
+
+                            {% if msg['message'] %}
+
+    {% if msg['message'].startswith('VIDEO_CALL_INVITE::') %}
+
+        {% set room =
+        msg['message'].replace(
+        'VIDEO_CALL_INVITE::',
+        ''
+        ) %}
+
+        </div>
+
+    {% else %}
+
+        {{ msg['message'] }}
+
+    {% endif %}
+
+{% endif %}
+
+{% if msg['voice_file'] %}
+
+<div class="voice-box">
+
+    <audio controls>
+
+        <source
+        src="/uploads/{{ msg['voice_file'] }}"
+        type="audio/webm">
+
+    </audio>
+
+</div>
+
+{% endif %}
+
+                            {% if msg['file_name'] %}
+
+                            <div class="file-box">
+
+                                <div class="file-header">
+
+                                    <i class="fas fa-file-alt file-icon"></i>
+
+                                    <div class="file-details">
+
+                                        <div class="file-name">
+                                            {{ msg['file_name'] }}
+                                        </div>
+
+                                        <div class="file-type">
+                                            Shared File
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="file-actions">
+
+                                    <a
+                                    href="/uploads/{{ msg['file_name'] }}"
+                                    target="_blank"
+                                    class="open-btn">
+
+                                        <i class="fas fa-folder-open"></i>
+                                        Open File
+
+                                    </a>
+
+                                    <a
+                                    href="/download/{{ msg['file_name'] }}"
+                                    class="download-btn">
+
+                                        <i class="fas fa-download"></i>
+                                        Download
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="message received">
+
+                        <div class="message-content">
+
+                            {% if msg['message'] %}
+
+    {% if msg['message'].startswith('VIDEO_CALL_INVITE::') %}
+
+        {% set room =
+        msg['message'].replace(
+        'VIDEO_CALL_INVITE::',
+        ''
+        ) %}
+        </div>
+
+    {% else %}
+
+        {{ msg['message'] }}
+
+    {% endif %}
+
+{% endif %}
+
+{% if msg['voice_file'] %}
+
+<div class="voice-box">
+
+    <audio controls>
+
+        <source
+        src="/uploads/{{ msg['voice_file'] }}"
+        type="audio/webm">
+
+    </audio>
+
+</div>
+
+{% endif %}
+
+                            {% if msg['file_name'] %}
+
+                            <div class="file-box">
+
+                                <div class="file-header">
+
+                                    <i class="fas fa-file-alt file-icon"></i>
+
+                                    <div class="file-details">
+
+                                        <div class="file-name">
+                                            {{ msg['file_name'] }}
+                                        </div>
+
+                                        <div class="file-type">
+                                            Shared File
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="file-actions">
+
+                                    <a
+                                    href="/uploads/{{ msg['file_name'] }}"
+                                    target="_blank"
+                                    class="open-btn">
+
+                                        <i class="fas fa-folder-open"></i>
+                                        Open File
+
+                                    </a>
+
+                                    <a
+                                    href="/download/{{ msg['file_name'] }}"
+                                    class="download-btn">
+
+                                        <i class="fas fa-download"></i>
+                                        Download
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-chat">
+
+                    <i class="fas fa-comments"></i>
+
+                    <h2>No Messages Yet</h2>
+
+                    <p>
+                        Start the conversation by sending a message.
+                    </p>
+
+                </div>
+
+            {% endif %}
+{% if call_logs %}
+
+{% for call in call_logs %}
+
+<div class="call-history">
+
+    <i class="fas fa-video"></i>
+
+    Video Call Started
+
+    <div class="call-time">
+
+        {{ call['created_at'] }}
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+        </div>
+
+        <!-- MESSAGE INPUT -->
+
+        <div class="message-form">
+
+            <!-- FILE UPLOAD -->
+
+            <form
+            action="/upload-file/{{ receiver['id'] }}"
+            method="POST"
+            enctype="multipart/form-data">
+
+                <input
+                type="file"
+                name="file"
+                id="fileInput"
+                hidden
+                onchange="this.form.submit()">
+
+                <button
+                type="button"
+                class="icon-btn"
+                onclick="document.getElementById('fileInput').click()">
+
+                    <i class="fas fa-paperclip"></i>
+
+                </button>
+
+            </form>
+
+            <!-- VOICE BUTTON -->
+
+            <button
+type="button"
+class="icon-btn"
+id="recordBtn">
+
+    <i class="fas fa-microphone"></i>
+
+</button>
+            <!-- SEND MESSAGE -->
+
+            <form
+            action="/send-message/{{ receiver['id'] }}"
+            method="POST"
+            style="display:flex;flex:1;gap:10px;">
+
+                <input
+                type="text"
+                name="message"
+                placeholder="Type a message..."
+                autocomplete="off"
+                required>
+
+                <button
+                type="submit"
+                class="send-btn">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                </button>
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>
+<!-- PROFILE PANEL -->
+
+<div
+class="profile-panel"
+id="profilePanel">
+
+    <div class="profile-top">
+
+        <button
+        class="close-profile"
+        onclick="closeProfilePanel()">
+
+            <i class="fas fa-times"></i>
+
+        </button>
+
+    </div>
+
+    {% if receiver['profile_pic'] %}
+
+    <img
+    src="{{ receiver['profile_pic'] }}"
+    class="profile-large-pic">
+
+    {% endif %}
+
+    <h2>{{ receiver['name'] }}</h2>
+
+    <p class="profile-bio">
+        {{ receiver['bio'] }}
+    </p>
+<div class="profile-section">
+    <h3>Skills I Teach</h3>
+
+    <div class="tag-box">
+
+        {% for skill in receiver['teach_skills'].split(',') if skill %}
+        <span class="skill-tag">
+            {{ skill }}
+        </span>
+        {% endfor %}
+
+    </div>
+</div>
+<div class="profile-section">
+    <h3>Skills I want to Learn</h3>
+
+    <div class="tag-box">
+
+        {% for skill in receiver['learn_skills'].split(',') if skill %}
+        <span class="skill-tag">
+            {{ skill }}
+        </span>
+        {% endfor %}
+    </div>
+</div>
+<div class="profile-section">
+    <h3>Languages</h3>
+
+    <div class="tag-box">
+
+        {% for lang in receiver['languages'].split(',') if lang %}
+        <span class="skill-tag">
+            {{ lang }}
+        </span>
+        {% endfor %}
+
+    </div>
+</div>
+</div>
+<script>
+
+const messages =
+document.getElementById("messages");
+
+if(messages){
+    messages.scrollTop =
+    messages.scrollHeight;
+}
+
+</script>
+<script>
+
+let mediaRecorder;
+let audioChunks = [];
+let isRecording = false;
+
+const recordBtn =
+document.getElementById("recordBtn");
+
+recordBtn.addEventListener("click", async () => {
+
+    if (!isRecording) {
+
+        const stream =
+        await navigator.mediaDevices.getUserMedia({
+            audio: true
+        });
+
+        mediaRecorder =
+        new MediaRecorder(stream);
+
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = (event) => {
+            audioChunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = async () => {
+
+            const audioBlob =
+            new Blob(audioChunks, {
+                type: 'audio/webm'
+            });
+
+            const formData =
+            new FormData();
+
+            formData.append(
+                'voice',
+                audioBlob,
+                'voice_' + Date.now() + '.webm'
+            );
+
+            await fetch(
+                '/upload-voice/{{ receiver["id"] }}',
+                {
+                    method: 'POST',
+                    body: formData
+                }
+            );
+
+            window.location.reload();
+
+        };
+
+        mediaRecorder.start();
+
+        isRecording = true;
+
+        recordBtn.innerHTML =
+        '<i class="fas fa-stop"></i>';
+
+    }
+
+    else {
+
+        mediaRecorder.stop();
+
+        isRecording = false;
+
+        recordBtn.innerHTML =
+        '<i class="fas fa-microphone"></i>';
+
+    }
+
+});
+
+</script>
+<script>
+
+function toggleMenu(){
+
+    const menu =
+    document.getElementById("chatMenu");
+
+    menu.classList.toggle("show-menu");
+
+}
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const menu =
+        document.getElementById("chatMenu");
+
+        if(
+            !event.target.closest(".menu-container")
+        ){
+            menu.classList.remove("show-menu");
+        }
+
+    }
+);
+
+</script>
+<script>
+
+function openProfilePanel(){
+
+    document
+    .getElementById("profilePanel")
+    .classList.add("show-profile");
+
+}
+
+function closeProfilePanel(){
+
+    document
+    .getElementById("profilePanel")
+    .classList.remove("show-profile");
+
+}
+
+</script>
+</body>
+
+</html>

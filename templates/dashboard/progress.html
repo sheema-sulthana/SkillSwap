@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Progress | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/progress.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+</head>
+
+<body>
+{% include 'components/dashboard_sidebar.html' %}
+<div class="main-content">
+
+    <div class="page-header">
+
+        <h1>Learning Progress</h1>
+
+        <p>
+            Track your learning journey and completed sessions.
+        </p>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <i class="fas fa-book"></i>
+
+            <h2>
+{{ learning_tracks|length + teaching_tracks|length }}
+</h2>
+
+            <span>Active Learning Tracks</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-check-circle"></i>
+
+            <h2>
+                {{ learning_tracks|sum(attribute='completed_sessions')
++
+teaching_tracks|sum(attribute='completed_sessions') }}
+            </h2>
+
+            <span>Sessions Completed</span>
+
+        </div>
+
+    </div>
+
+    
+<h2 class="section-title">
+📚 Skills I'm Learning
+</h2>
+
+<div class="tracks-grid">
+
+{% for track in learning_tracks %}
+
+{% set progress =
+((track.completed_sessions /
+track.total_sessions) * 100)|int %}
+
+<div class="track-card">
+
+    <div class="track-header">
+        <h3>{{ track.skill_name }}</h3>
+        <div class="track-person">
+
+    <i class="fas fa-user-graduate"></i>
+
+    Teacher:
+    {{ track.teacher_name }}
+
+</div>
+        <span>{{ progress }}%</span>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill"
+        style="width:{{ progress }}%">
+        </div>
+    </div>
+
+    <div class="session-info">
+        {{ track.completed_sessions }}
+        /
+        {{ track.total_sessions }}
+        Sessions Completed
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+<h2 class="section-title">
+🎓 Skills I'm Teaching
+</h2>
+
+<div class="tracks-grid">
+
+{% for track in teaching_tracks %}
+
+{% set progress =
+((track.completed_sessions /
+track.total_sessions) * 100)|int %}
+
+<div class="track-card">
+
+    <div class="track-header">
+        <h3>{{ track.skill_name }}</h3>
+        <div class="track-person">
+
+    <i class="fas fa-user"></i>
+
+    Learner:
+    {{ track.learner_name }}
+
+</div>
+        <span>{{ progress }}%</span>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill"
+        style="width:{{ progress }}%">
+        </div>
+    </div>
+
+    <div class="session-info">
+        {{ track.completed_sessions }}
+        /
+        {{ track.total_sessions }}
+        Sessions Completed
+    </div>
+
+    <a
+    href="/complete-session/{{ track.id }}"
+    class="complete-btn">
+
+        <i class="fas fa-plus-circle"></i>
+
+        Mark Session Complete
+
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Matches | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/matches.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    {% include 'components/dashboard_sidebar.html' %}
+
+    <main class="main-content">
+
+        <div class="page-header">
+
+            <h1>Find Your Skill Matches</h1>
+
+            <p>
+                Connect with learners and teachers who match your interests.
+            </p>
+
+        </div>
+
+        <div class="matches-grid">
+
+            {% if matches %}
+
+                {% for user in matches %}
+
+                <div class="match-card">
+
+                    <div class="card-top">
+
+                        {% if user['profile_pic'] %}
+
+                        <img
+                        src="{{ user['profile_pic'] }}"
+                        class="profile-pic">
+
+                        {% else %}
+
+                        <div class="profile-letter">
+                            {{ user['name'][0] }}
+                        </div>
+
+                        {% endif %}
+
+                        <div>
+
+                            <h3>{{ user['name'] }}</h3>
+
+                            <span class="match-badge">
+                                Match Found
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <p class="bio">
+
+                        {{ user['bio'] if user['bio'] else 'No bio added yet.' }}
+
+                    </p>
+
+                    <div class="skill-section">
+
+                        <h4>Skills To Teach</h4>
+
+                        <div class="skill-tags">
+
+                            {% for skill in user['teach_skills'].split(',') if skill %}
+
+                            <span>{{ skill }}</span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="skill-section">
+
+                        <h4>Skills To Learn</h4>
+
+                        <div class="skill-tags">
+
+                            {% for skill in user['learn_skills'].split(',') if skill %}
+
+                            <span>{{ skill }}</span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                    {% if user['id'] in connected_ids %}
+
+<button class="connect-btn connected-btn" disabled>
+
+    <i class="fas fa-check-circle"></i>
+
+    Connected
+
+</button>
+
+{% elif user['id'] in pending_ids %}
+
+<button class="connect-btn sent-btn" disabled>
+
+    ✓ Request Sent
+
+</button>
+
+{% else %}
+
+<a
+href="/send-request/{{ user['id'] }}"
+class="connect-btn">
+
+    <i class="fas fa-user-plus"></i>
+
+    Connect
+
+</a>
+
+{% endif %}
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <i class="fas fa-search"></i>
+
+                    <h2>No Matches Yet</h2>
+
+                    <p>
+                        Complete your profile and add skills to find matches.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Profile | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/edit_profile.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="profile-container">
+
+    <h1>Set Up Your Profile</h1>
+
+    <form action="/save-profile" method="POST">
+
+        <input
+        type="text"
+        name="name"
+        placeholder="Full Name"
+        value="{{ user['name'] if user else '' }}"
+        required>
+
+        <textarea
+        name="bio"
+        placeholder="Short Bio">{{ user['bio'] if user else '' }}</textarea>
+
+        <!-- TEACH -->
+
+        <div class="card">
+
+            <h2>Skills You Can Teach</h2>
+
+            <div class="checkbox-grid">
+
+<label><input type="checkbox" name="teach_skills" value="Python"> Python</label>
+<label><input type="checkbox" name="teach_skills" value="Java"> Java</label>
+<label><input type="checkbox" name="teach_skills" value="C++"> C++</label>
+<label><input type="checkbox" name="teach_skills" value="JavaScript"> JavaScript</label>
+<label><input type="checkbox" name="teach_skills" value="React"> React</label>
+<label><input type="checkbox" name="teach_skills" value="Node.js"> Node.js</label>
+<label><input type="checkbox" name="teach_skills" value="Flask"> Flask</label>
+<label><input type="checkbox" name="teach_skills" value="Django"> Django</label>
+<label><input type="checkbox" name="teach_skills" value="Flutter"> Flutter</label>
+<label><input type="checkbox" name="teach_skills" value="Android Development"> Android Development</label>
+<label><input type="checkbox" name="teach_skills" value="iOS Development"> iOS Development</label>
+<label><input type="checkbox" name="teach_skills" value="Machine Learning"> Machine Learning</label>
+<label><input type="checkbox" name="teach_skills" value="Artificial Intelligence"> Artificial Intelligence</label>
+<label><input type="checkbox" name="teach_skills" value="Data Science"> Data Science</label>
+<label><input type="checkbox" name="teach_skills" value="Cyber Security"> Cyber Security</label>
+<label><input type="checkbox" name="teach_skills" value="Cloud Computing"> Cloud Computing</label>
+<label><input type="checkbox" name="teach_skills" value="DevOps"> DevOps</label>
+<label><input type="checkbox" name="teach_skills" value="Blockchain"> Blockchain</label>
+<label><input type="checkbox" name="teach_skills" value="Game Development"> Game Development</label>
+<label><input type="checkbox" name="teach_skills" value="UI/UX Design"> UI/UX Design</label>
+<label><input type="checkbox" name="teach_skills" value="Graphic Design"> Graphic Design</label>
+<label><input type="checkbox" name="teach_skills" value="Photography"> Photography</label>
+<label><input type="checkbox" name="teach_skills" value="Video Editing"> Video Editing</label>
+<label><input type="checkbox" name="teach_skills" value="Public Speaking"> Public Speaking</label>
+
+</div>
+
+        </div>
+
+        <!-- LEARN -->
+
+        <div class="card">
+
+            <h2>Skills You Want To Learn</h2>
+
+            <div class="checkbox-grid">
+
+                <div class="card">
+
+    <div class="checkbox-grid">
+
+        <label><input type="checkbox" name="learn_skills" value="Python"> Python</label>
+        <label><input type="checkbox" name="learn_skills" value="Java"> Java</label>
+        <label><input type="checkbox" name="learn_skills" value="C++"> C++</label>
+        <label><input type="checkbox" name="learn_skills" value="JavaScript"> JavaScript</label>
+        <label><input type="checkbox" name="learn_skills" value="React"> React</label>
+        <label><input type="checkbox" name="learn_skills" value="Node.js"> Node.js</label>
+        <label><input type="checkbox" name="learn_skills" value="Flask"> Flask</label>
+        <label><input type="checkbox" name="learn_skills" value="Django"> Django</label>
+        <label><input type="checkbox" name="learn_skills" value="Flutter"> Flutter</label>
+        <label><input type="checkbox" name="learn_skills" value="Android Development"> Android Development</label>
+        <label><input type="checkbox" name="learn_skills" value="iOS Development"> iOS Development</label>
+        <label><input type="checkbox" name="learn_skills" value="Machine Learning"> Machine Learning</label>
+        <label><input type="checkbox" name="learn_skills" value="Artificial Intelligence"> Artificial Intelligence</label>
+        <label><input type="checkbox" name="learn_skills" value="Data Science"> Data Science</label>
+        <label><input type="checkbox" name="learn_skills" value="Cyber Security"> Cyber Security</label>
+        <label><input type="checkbox" name="learn_skills" value="Cloud Computing"> Cloud Computing</label>
+        <label><input type="checkbox" name="learn_skills" value="DevOps"> DevOps</label>
+        <label><input type="checkbox" name="learn_skills" value="Blockchain"> Blockchain</label>
+        <label><input type="checkbox" name="learn_skills" value="Game Development"> Game Development</label>
+        <label><input type="checkbox" name="learn_skills" value="UI/UX Design"> UI/UX Design</label>
+        <label><input type="checkbox" name="learn_skills" value="Graphic Design"> Graphic Design</label>
+        <label><input type="checkbox" name="learn_skills" value="Photography"> Photography</label>
+        <label><input type="checkbox" name="learn_skills" value="Video Editing"> Video Editing</label>
+        <label><input type="checkbox" name="learn_skills" value="Public Speaking"> Public Speaking</label>
+
+    </div>
+
+</div>
+            </div>
+
+        </div>
+
+        <!-- LANGUAGES -->
+
+        <div class="card">
+
+            <h2>Languages</h2>
+
+            <div class="checkbox-grid">
+
+                <label><input type="checkbox" name="languages" value="English"> English</label>
+                <label><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+                <label><input type="checkbox" name="languages" value="Telugu"> Telugu</label>
+                <label><input type="checkbox" name="languages" value="Tamil"> Tamil</label>
+                <label><input type="checkbox" name="languages" value="Kannada"> Kannada</label>
+                <label><input type="checkbox" name="languages" value="Malayalam"> Malayalam</label>
+                <label><input type="checkbox" name="languages" value="Marathi"> Marathi</label>
+                <label><input type="checkbox" name="languages" value="Gujarati"> Gujarati</label>
+                <label><input type="checkbox" name="languages" value="Punjabi"> Punjabi</label>
+                <label><input type="checkbox" name="languages" value="Bengali"> Bengali</label>
+                <label><input type="checkbox" name="languages" value="Urdu"> Urdu</label>
+                <label><input type="checkbox" name="languages" value="Odia"> Odia</label>
+                <label><input type="checkbox" name="languages" value="Assamese"> Assamese</label>
+
+            </div>
+
+        </div>
+
+        <button type="submit" class="save-btn">
+            Save Profile
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

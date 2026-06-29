@@ -1,0 +1,126 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Achievements | SkillSwap</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/sidebar.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/achievements.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+</head>
+
+<body>
+{% include 'components/dashboard_sidebar.html' %}
+<div class="main-content">
+
+    <div class="page-header">
+
+        <h1>🏆 Achievements</h1>
+
+        <p>
+            Track your learning milestones
+            and unlock rewards.
+        </p>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <i class="fas fa-award"></i>
+
+            <h2>{{ earned_badges }}</h2>
+
+            <span>Badges Earned</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-check-circle"></i>
+
+            <h2>{{ total_completed }}</h2>
+
+            <span>Sessions Completed</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fas fa-users"></i>
+
+            <h2>{{ total_connections }}</h2>
+
+            <span>Connections</span>
+
+        </div>
+
+    </div>
+
+    <div class="badges-grid">
+
+        {% for badge in badges %}
+
+        <div class="badge-card
+        {% if badge.unlocked %}
+        unlocked
+        {% else %}
+        locked
+        {% endif %}">
+
+            <div class="badge-icon">
+                {{ badge.icon }}
+            </div>
+
+            <h3>
+                {{ badge.title }}
+            </h3>
+
+            <p>
+                {{ badge.description }}
+            </p>
+
+            {% if badge.unlocked %}
+
+            <span class="badge-status unlocked-text">
+                Unlocked
+            </span>
+
+            {% else %}
+
+            <span class="badge-status locked-text">
+                Locked
+            </span>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

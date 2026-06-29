@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sessions | SkillSwap</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/sessions.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+{% include 'components/dashboard_sidebar.html' %}
+
+<div class="main-content">
+
+    <div class="dashboard-header">
+
+        <h1>Sessions</h1>
+
+        <button
+            id="openModal"
+            class="create-btn">
+
+            <i class="fa-solid fa-plus"></i>
+            Create Session
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- SESSIONS I TEACH -->
+    <!-- ========================= -->
+
+    <h2 class="section-title">
+
+        Sessions I Teach
+
+    </h2>
+
+
+    <div class="sessions-grid">
+
+    {% if teaching_sessions %}
+
+        {% for s in teaching_sessions %}
+
+        <div class="session-card">
+
+            <h3>{{ s['title'] }}</h3>
+
+            <p class="skill">
+
+                🎯 {{ s['skill'] }}
+
+            </p>
+
+
+            {% if s['status']=='scheduled' %}
+
+                <div class="status-badge scheduled">
+
+                    🟡 Scheduled
+
+                </div>
+
+            {% elif s['status']=='live' %}
+
+                <div class="status-badge live">
+
+                    🟢 Live Now
+
+                </div>
+
+            {% elif s['status']=='completed' %}
+
+                <div class="status-badge completed">
+
+                    🔵 Completed
+
+                </div>
+
+            {% endif %}
+
+
+
+            <div class="session-details">
+
+                <p>
+
+                    📅 {{ s['session_date'] }}
+
+                </p>
+
+                <p>
+
+                    🕒 {{ s['session_time'] }}
+
+                </p>
+
+                <p>
+
+                    ⏳ {{ s['duration'] }} Minutes
+
+                </p>
+
+            </div>
+
+
+
+            {% if s['status']=='scheduled' %}
+
+                <a
+                    href="/start_session/{{ s['id'] }}"
+                    class="start-btn">
+
+                    ▶ Start Session
+
+                </a>
+
+            {% elif s['status']=='live' %}
+
+<div class="button-group">
+
+<a
+href="{{ s['meeting_link'] }}"
+target="_blank"
+class="join-btn">
+
+🔵 Rejoin Session
+
+</a>
+
+<a
+href="/end_session/{{ s['id'] }}"
+class="end-btn">
+
+🛑 End Session
+
+</a>
+
+</div>
+            {% else %}
+
+                <button
+                    class="completed-btn">
+
+                    ✔ Session Completed
+
+                </button>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty-card">
+
+            <i class="fa-solid fa-calendar-xmark"></i>
+
+            <h3>No Teaching Sessions</h3>
+
+            <p>
+
+                Create your first learning session.
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- SESSIONS I'M LEARNING -->
+    <!-- ========================= -->
+
+    <h2 class="section-title">
+
+        Sessions I'm Learning
+
+    </h2>
+
+    <div class="sessions-grid">
+        {% if learning_sessions %}
+
+    {% for s in learning_sessions %}
+
+    <div class="session-card">
+
+        <h3>
+
+            {{ s['title'] }}
+
+        </h3>
+
+        <p class="skill">
+
+            🎯 {{ s['skill'] }}
+
+        </p>
+
+        <p class="teacher-name">
+
+            👨‍🏫 {{ s['teacher_name'] }}
+
+        </p>
+
+
+        {% if s['status']=='scheduled' %}
+
+            <div class="status-badge scheduled">
+
+                🟡 Scheduled
+
+            </div>
+
+        {% elif s['status']=='live' %}
+
+            <div class="status-badge live">
+
+                🟢 Live Now
+
+            </div>
+
+        {% elif s['status']=='completed' %}
+
+            <div class="status-badge completed">
+
+                🔵 Completed
+
+            </div>
+
+        {% endif %}
+
+
+        <div class="session-details">
+
+            <p>
+
+                📅 {{ s['session_date'] }}
+
+            </p>
+
+            <p>
+
+                🕒 {{ s['session_time'] }}
+
+            </p>
+
+            <p>
+
+                ⏳ {{ s['duration'] }} Minutes
+
+            </p>
+
+        </div>
+
+
+        {% if s['status']=='live' %}
+
+            <a
+                href="{{ s['meeting_link'] }}"
+                target="_blank"
+                class="join-btn">
+
+                🚀 Join Now
+
+            </a>
+
+        {% elif s['status']=='completed' %}
+
+            <button
+                class="completed-btn">
+
+                ✔ Session Completed
+
+            </button>
+
+        {% else %}
+
+            <button
+                class="wait-btn"
+                disabled>
+
+                ⏳ Waiting For Teacher
+
+            </button>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div class="empty-card">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <h3>
+
+            No Learning Sessions
+
+        </h3>
+
+        <p>
+
+            Join a skill and upcoming sessions will appear here.
+
+        </p>
+
+    </div>
+
+{% endif %}
+
+</div>
+
+
+<!-- ================================= -->
+<!-- CREATE SESSION MODAL -->
+<!-- ================================= -->
+
+<div
+    class="modal-overlay"
+    id="modal">
+
+    <div class="session-modal">
+
+        <h2>
+
+            Create Session
+
+        </h2>
+
+        <form
+            method="POST"
+            action="/create_session">
+
+            <div class="form-group">
+
+                <label>
+
+                    Teaching Skill
+
+                </label>
+
+                <select
+                    name="skill"
+                    required>
+
+                    {% for skill in skills %}
+
+                        <option>
+
+                            {{ skill }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Session Title
+
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    required>
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Date
+
+                    </label>
+
+                    <input
+                        type="date"
+                        name="session_date"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        Time
+
+                    </label>
+
+                    <input
+                        type="time"
+                        name="session_time"
+                        required>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Duration
+
+                </label>
+
+                <select
+                    name="duration">
+                                            <option value="15">
+
+                            15 Minutes
+
+                        </option>
+
+                        <option value="30">
+
+                            30 Minutes
+
+                        </option>
+
+                        <option value="45">
+
+                            45 Minutes
+
+                        </option>
+
+                        <option value="60">
+
+                            60 Minutes
+
+                        </option>
+
+                        <option value="90">
+
+                            90 Minutes
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="modal-buttons">
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+
+                        Create Session
+
+                    </button>
+
+                    <button
+                        type="button"
+                        id="closeModal"
+                        class="cancel-btn">
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+const modal = document.getElementById("modal");
+
+const openBtn = document.getElementById("openModal");
+
+const closeBtn = document.getElementById("closeModal");
+
+openBtn.onclick = function(){
+
+    modal.style.display="flex";
+
+}
+
+closeBtn.onclick = function(){
+
+    modal.style.display="none";
+
+}
+
+window.onclick = function(e){
+
+    if(e.target==modal){
+
+        modal.style.display="none";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

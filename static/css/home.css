@@ -1,0 +1,378 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#020617;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 8%;
+
+    position:sticky;
+    top:0;
+
+    z-index:999;
+
+    background:rgba(2,6,23,.95);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(56,189,248,.15);
+}
+
+.logo{
+    font-size:36px;
+    font-weight:800;
+    color:#38bdf8;
+}
+
+.logo-icon{
+    color:#2563eb;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#38bdf8;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.btn-login{
+    text-decoration:none;
+    color:white;
+    padding:12px 24px;
+}
+
+.btn-signup{
+    text-decoration:none;
+
+    background:linear-gradient(
+    45deg,
+    #2563eb,
+    #38bdf8);
+
+    color:white;
+
+    padding:12px 24px;
+
+    border-radius:12px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:90vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:50px;
+
+    background:
+    radial-gradient(circle at top,
+    rgba(37,99,235,.6),
+    transparent 55%);
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:82px;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.hero p{
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+    font-size:20px;
+
+    margin-bottom:35px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.primary-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+.secondary-btn{
+
+    background:transparent;
+
+    color:white;
+
+    border:1px solid #38bdf8;
+
+    padding:15px 35px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:110px 8%;
+}
+
+.section h2{
+
+    text-align:center;
+
+    font-size:58px;
+
+    font-weight:800;
+
+    margin-bottom:60px;
+}
+
+/* CARDS */
+
+.card-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+}
+
+.card{
+
+    background:
+    rgba(15,23,42,.85);
+
+    border:
+    1px solid rgba(56,189,248,.2);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    min-height:240px;
+
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    transition:.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 0 25px
+    rgba(37,99,235,.25);
+}
+
+.card i{
+
+    font-size:42px;
+
+    color:#38bdf8;
+
+    margin-bottom:20px;
+}
+
+.card h3{
+
+    font-size:30px;
+
+    margin-bottom:15px;
+}
+
+.card p{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+    font-size:16px;
+}
+
+/* SKILLS */
+
+.skills-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+}
+
+.skill-card{
+
+    background:#0f172a;
+
+    border:
+    1px solid rgba(56,189,248,.15);
+
+    padding:35px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    font-size:25px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.skill-card:hover{
+
+    border-color:#38bdf8;
+
+    transform:translateY(-5px);
+}
+
+/* STATS */
+
+.stats{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:120px;
+
+    text-align:center;
+
+    padding:100px 0;
+}
+
+.stats h2{
+
+    color:#38bdf8;
+
+    font-size:56px;
+}
+
+.stats p{
+
+    margin-top:10px;
+
+    color:#cbd5e1;
+}
+
+/* FOOTER */
+
+footer{
+
+    text-align:center;
+
+    padding:50px;
+
+    border-top:
+    1px solid rgba(56,189,248,.1);
+}
+
+footer h3{
+
+    font-size:30px;
+
+    margin-bottom:10px;
+}
+
+footer p{
+
+    color:#cbd5e1;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:20px;
+    }
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .section h2{
+        font-size:42px;
+    }
+
+    .stats{
+
+        flex-direction:column;
+
+        gap:40px;
+    }
+}
+.primary-btn,
+.secondary-btn {
+    text-decoration: none;
+}

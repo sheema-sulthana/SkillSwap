@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chat | SkillSwap</title>
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/chat.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+</head>
+
+<body>
+
+{% include 'components/dashboard_sidebar.html' %}
+
+<div class="main-content">
+
+    <div class="chat-container">
+
+        <div class="chat-sidebar">
+
+            <div class="chat-sidebar-header">
+                <h2>Connections</h2>
+            </div>
+
+            <div class="connections-list">
+
+                {% for user in connections %}
+
+                <a href="/chat/{{ user['id'] }}"
+                class="connection-item">
+
+                    {% if user['profile_pic'] %}
+
+                    <img
+src="{{ user['profile_pic'] }}"
+class="connection-avatar">
+
+                    {% else %}
+
+                    <div class="avatar-placeholder">
+                        {{ user['name'][0]|upper }}
+                    </div>
+
+                    {% endif %}
+
+                    <div class="connection-info">
+
+                        <h4>{{ user['name'] }}</h4>
+
+                        <span>Connected User</span>
+
+                    </div>
+
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="chat-main">
+
+            <div class="chat-welcome">
+
+                <i class="fas fa-comments"></i>
+
+                <h2>Welcome to SkillSwap Chat</h2>
+
+                <p>
+                    Select a connection from the left to start chatting.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

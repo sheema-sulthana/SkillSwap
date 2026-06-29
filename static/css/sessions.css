@@ -1,0 +1,981 @@
+/* =====================================================
+   SkillSwap Sessions Page
+   Part 1
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#020d33;
+    color:#fff;
+}
+
+/* ===========================
+   MAIN CONTENT
+=========================== */
+
+.main-content{
+
+    margin-left:270px;
+
+    padding:40px;
+
+    min-height:100vh;
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+}
+
+.dashboard-header h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+}
+
+.create-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.create-btn:hover{
+
+    background:#3b82f6;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+
+}
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.section-title{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin:45px 0 20px;
+
+    color:#fff;
+
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.sessions-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(340px,1fr));
+
+    gap:25px;
+
+}
+
+/* ===========================
+   SESSION CARD
+=========================== */
+
+.session-card{
+
+    background:rgba(18,33,57,.95);
+
+    border:1px solid rgba(56,189,248,.18);
+
+    border-radius:20px;
+
+    padding:24px;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.session-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#38bdf8;
+
+    box-shadow:
+    0 18px 40px rgba(56,189,248,.18);
+
+}
+
+.session-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #38bdf8
+    );
+
+}
+
+/* ===========================
+   TITLE
+=========================== */
+
+.session-card h3{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    margin-bottom:14px;
+
+}
+
+/* ===========================
+   EMPTY CARD
+=========================== */
+
+.empty-card{
+
+    background:#10213b;
+
+    border:2px dashed
+    rgba(56,189,248,.25);
+
+    border-radius:18px;
+
+    padding:45px;
+
+    text-align:center;
+
+    color:#cbd5e1;
+
+}
+
+.empty-card i{
+
+    font-size:60px;
+
+    color:#38bdf8;
+
+    margin-bottom:18px;
+
+}
+
+.empty-card h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+    color:#fff;
+
+}
+
+.empty-card p{
+
+    color:#94a3b8;
+
+    font-size:15px;
+
+    line-height:1.6;
+
+}
+/* =====================================================
+   PART 2
+   Session Details, Badges & Buttons
+===================================================== */
+
+
+/* ===========================
+   SKILL BADGE
+=========================== */
+
+.skill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin:12px 0;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:rgba(37,99,235,.15);
+
+    border:1px solid rgba(59,130,246,.35);
+
+    color:#7dd3fc;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+/* ===========================
+   TEACHER BADGE
+=========================== */
+
+.teacher-name{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:18px;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#d1d5db;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+
+
+/* ===========================
+   SESSION DETAILS
+=========================== */
+
+.session-details{
+
+    margin:20px 0;
+
+}
+
+
+
+.session-details p{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 0;
+
+    color:#dbeafe;
+
+    font-size:15px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+
+
+.session-details p:last-child{
+
+    border-bottom:none;
+
+}
+
+
+
+/* ===========================
+   STATUS BADGES
+=========================== */
+
+.status-badge{
+
+    display:inline-block;
+
+    margin:10px 0 20px;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+
+
+.status-badge.scheduled{
+
+    background:rgba(234,179,8,.15);
+
+    color:#facc15;
+
+    border:1px solid rgba(250,204,21,.25);
+
+}
+
+
+
+.status-badge.live{
+
+    background:rgba(34,197,94,.15);
+
+    color:#4ade80;
+
+    border:1px solid rgba(74,222,128,.25);
+
+}
+
+
+
+.status-badge.completed{
+
+    background:rgba(37,99,235,.15);
+
+    color:#60a5fa;
+
+    border:1px solid rgba(96,165,250,.25);
+
+}
+
+
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.start-btn,
+
+.join-btn,
+
+.wait-btn,
+
+.completed-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:18px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+
+
+/* START */
+
+.start-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+
+.start-btn:hover{
+
+    background:#3b82f6;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+
+}
+
+
+
+/* JOIN */
+
+.join-btn{
+
+    background:#0ea5e9;
+
+    color:white;
+
+}
+
+
+
+.join-btn:hover{
+
+    background:#38bdf8;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(56,189,248,.35);
+
+}
+
+
+
+/* WAITING */
+
+.wait-btn{
+
+    background:#1e293b;
+
+    color:#94a3b8;
+
+    border:none;
+
+    cursor:not-allowed;
+
+}
+
+
+
+/* COMPLETED */
+
+.completed-btn{
+
+    background:#0f766e;
+
+    color:white;
+
+    border:none;
+
+}
+
+
+
+/* ===========================
+   BUTTON ICON SPACING
+=========================== */
+
+.start-btn i,
+
+.join-btn i{
+
+    margin-right:8px;
+
+}
+
+
+
+/* ===========================
+   HOVER GLOW
+=========================== */
+
+.session-card:hover .skill{
+
+    background:rgba(56,189,248,.18);
+
+    border-color:#38bdf8;
+
+}
+
+
+
+.session-card:hover h3{
+
+    color:#7dd3fc;
+
+}
+/* =====================================================
+   PART 3
+   Modal • Responsive • Animations
+===================================================== */
+
+
+/* ===========================
+   MODAL
+=========================== */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(8px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+
+
+.session-modal{
+
+    width:100%;
+
+    max-width:620px;
+
+    background:#10213b;
+
+    border:1px solid rgba(56,189,248,.25);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    animation:popup .35s ease;
+
+}
+
+
+
+.session-modal h2{
+
+    text-align:center;
+
+    font-size:28px;
+
+    margin-bottom:30px;
+
+    color:#ffffff;
+
+}
+
+
+
+/* ===========================
+   FORM
+=========================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    color:#cbd5e1;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+
+
+.form-group input,
+
+.form-group select{
+
+    background:#0b1727;
+
+    color:white;
+
+    border:1px solid rgba(56,189,248,.20);
+
+    border-radius:12px;
+
+    padding:14px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+
+.form-group input:focus,
+
+.form-group select:focus{
+
+    border-color:#38bdf8;
+
+    box-shadow:0 0 15px rgba(56,189,248,.25);
+
+}
+
+
+
+.row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+
+
+/* ===========================
+   MODAL BUTTONS
+=========================== */
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:16px;
+
+    margin-top:25px;
+
+}
+
+
+
+.save-btn,
+
+.cancel-btn{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.save-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+
+.save-btn:hover{
+
+    background:#3b82f6;
+
+    transform:translateY(-2px);
+
+}
+
+
+
+.cancel-btn{
+
+    background:#1e293b;
+
+    color:#cbd5e1;
+
+}
+
+
+
+.cancel-btn:hover{
+
+    background:#334155;
+
+}
+.button-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.end-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    background:#dc2626;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.end-btn:hover{
+
+    background:#ef4444;
+
+    transform:translateY(-3px);
+
+}
+
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+    background:#071321;
+
+}
+
+
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px) scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:1100px){
+
+    .main-content{
+
+        margin-left:90px;
+
+        padding:25px;
+
+    }
+
+}
+
+
+
+@media(max-width:768px){
+
+    .dashboard-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+
+    }
+
+    .sessions-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .modal-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .session-modal{
+
+        width:92%;
+
+        padding:25px;
+
+    }
+
+}
+
+
+
+@media(max-width:480px){
+
+    .main-content{
+
+        margin-left:0;
+
+        padding:18px;
+
+    }
+
+    .dashboard-header h1{
+
+        font-size:28px;
+
+    }
+
+    .section-title{
+
+        font-size:22px;
+
+    }
+
+    .session-card{
+
+        padding:18px;
+
+    }
+
+    .session-card h3{
+
+        font-size:20px;
+
+    }
+
+}

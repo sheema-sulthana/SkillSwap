@@ -1,0 +1,158 @@
+<div class="sidebar">
+
+    <div class="sidebar-header">
+
+        <div class="sidebar-logo">
+
+            <span class="logo-icon">✦</span>
+
+            <span class="logo-text">SkillSwap</span>
+
+        </div>
+
+    </div>
+
+
+    <ul class="sidebar-menu">
+
+    
+        <li>
+
+            <a href="/dashboard"
+            class="sidebar-link {% if active_page == 'dashboard' %}active{% endif %}">
+
+                <i class="fas fa-home"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/matches"
+            class="sidebar-link {% if active_page == 'matches' %}active{% endif %}">
+
+                <i class="fas fa-user-friends"></i>
+
+                <span>Matches</span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/chat"
+            class="sidebar-link {% if active_page == 'chat' %}active{% endif %}">
+
+                <i class="fas fa-comments"></i>
+
+                <span>Chat</span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/calendar"
+            class="sidebar-link {% if active_page == 'calendar' %}active{% endif %}">
+
+                <i class="fas fa-calendar-alt"></i>
+
+                <span>Calendar</span>
+
+            </a>
+
+        </li>
+
+        <li>
+
+<a href="/sessions"
+
+class="{% if active_page=='sessions' %}active{% endif %}">
+
+<i class="fas fa-video"></i>
+
+<span>Sessions</span>
+
+</a>
+
+</li>
+
+
+        <li>
+
+            <a href="/progress"
+            class="sidebar-link {% if active_page == 'progress' %}active{% endif %}">
+
+                <i class="fas fa-chart-line"></i>
+
+                <span>Progress</span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="/achievements"
+            class="sidebar-link {% if active_page == 'achievements' %}active{% endif %}">
+
+                <i class="fas fa-trophy"></i>
+
+                <span>Achievements</span>
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/community"
+            class="sidebar-link {% if active_page == 'community' %}active{% endif %}">
+
+                <i class="fas fa-users"></i>
+
+                <span>Community</span>
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <div class="sidebar-footer">
+
+
+        <a href="/logout"
+
+        class="logout-btn">
+
+            <i class="fas fa-sign-out-alt">
+
+            </i>
+
+
+            <span>
+
+                Logout
+
+            </span>
+
+
+        </a>
+
+    </div>
+
+</div>
