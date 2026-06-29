@@ -39,7 +39,6 @@ google = oauth.register(
 
 )
 app.secret_key = os.getenv("SECRET_KEY")
-app.secret_key = "skillswap_secret_key_2026"
 @app.route('/')
 def home():
     return render_template('home/index.html')
@@ -369,7 +368,9 @@ def google_authorized():
     session["email"] = email
     session["profile_pic"] = picture
 
-    return redirect('/dashboard')
+    session.modified = True
+    return redirect(url_for("dashboard"))
+
 @app.route('/save-profile', methods=['POST'])
 def save_profile():
 
