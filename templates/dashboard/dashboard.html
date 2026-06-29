@@ -259,7 +259,7 @@ track.total_sessions) * 100)|int %}
     <div class="progress-bar">
 
         <div class="progress-fill"
-             style="width: { { progress } } %">
+             style="width: {{ progress }}%">
         </div>
 
     </div>
@@ -411,19 +411,6 @@ sidebar.classList.toggle("show");
 }
 
 
-
-</script>
-<script>
-
-const menuBtn = document.getElementById("menu-toggle");
-
-const sidebar = document.querySelector(".sidebar");
-
-menuBtn.addEventListener("click",()=>{
-
-sidebar.classList.toggle("show");
-
-});
 
 </script>
 </body>

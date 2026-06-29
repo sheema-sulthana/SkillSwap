@@ -16,6 +16,12 @@ from flask import (
     send_from_directory
 )
 from database.db import get_connection
+from datetime import timedelta
+
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=7)
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
 
@@ -318,7 +324,7 @@ def google_authorized():
 
     token = google.authorize_access_token()
 
-    user_info = token["userinfo"]
+    user_info = google.get("userinfo").json()
 
     email = user_info["email"]
     name = user_info["name"]
@@ -368,9 +374,13 @@ def google_authorized():
     session["email"] = email
     session["profile_pic"] = picture
 
+    session.permanent = True
     session.modified = True
-    return redirect(url_for("dashboard"))
 
+    response = redirect(url_for("dashboard"))
+    response.headers["Cache-Control"] = "no-store"
+
+    return response
 @app.route('/save-profile', methods=['POST'])
 def save_profile():
 
