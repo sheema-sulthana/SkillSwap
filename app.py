@@ -29,20 +29,14 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 load_dotenv()
 oauth = OAuth(app)
 google = oauth.register(
-
-    name='google',
-
+    name="google",
     client_id=os.getenv("GOOGLE_CLIENT_ID"),
-
     client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
-
-    server_metadata_url=
-    "https://accounts.google.com/.well-known/openid-configuration",
-
+    server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
+    api_base_url="https://openidconnect.googleapis.com/v1/",
     client_kwargs={
         "scope": "openid email profile"
     }
-
 )
 app.secret_key = os.getenv("SECRET_KEY")
 @app.route('/')
