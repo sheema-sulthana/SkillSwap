@@ -17,12 +17,12 @@ from flask import (
 )
 from database.db import get_connection
 from datetime import timedelta
+app = Flask(__name__)
 
 app.config["SESSION_COOKIE_SECURE"] = True
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=7)
-app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
